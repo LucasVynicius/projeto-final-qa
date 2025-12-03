@@ -13,20 +13,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout do código
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Configurar Node.js
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: 18
 
-      - name: Instalar dependências
+      - name: Install dependencies
         run: npm install
 
-      - name: Rodar testes Cypress
+      - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
-          build: npm run build
-          start: npm start
-          wait-on: http://localhost:3000
+          command: npx cypress run
